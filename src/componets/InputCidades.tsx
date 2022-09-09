@@ -1,29 +1,47 @@
+import React from "react"
+import select from "../sounds/selecionar.wav"
 import { useEffect, useState } from "react"
+import { FormEnderecoContext } from "../pages/FormEnderecoContext"
 
-type props = {
-    uf: string
-}
 
-export default function({ uf }: props) {
+export default function() {
     const [cidades, setCidades] = useState([])
-    const [loading, setLoading] = useState(true)
+    const {uf, setUf, cidade, setCidade} = React.useContext(FormEnderecoContext)
     
-    async function buscarCidades(){
+    async function BuscarCidade(){
+        if (!uf) return
         const requestCidades = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
         const cidades = await requestCidades.json()
         setCidades(cidades)
-        setLoading(false)
     }
-useEffect(() => {
-    buscarCidades()
-}, [uf])
+    useEffect(() => {
+        BuscarCidade()
+    }, [uf])
 
+    const selecionarCidade = (ev: React.ChangeEvent<HTMLSelectElement>) => {
+        setCidade(ev.currentTarget.value)
+    }
+    // const Sound = () => {
+    //     const audio = new Audio(select)
+    
     return <>
-        {loading
-        ? "loading cidades"
-        : <select>
-            {cidades.map(({nome}) => <option> {nome }</option>)}
-          </select>
-     }
+        {!uf 
+            ? <div className="input-container">
+                <select className="select-text second-select"
+                // onClick={ () => {
+                //     audio.play()
+                // }}
+                >
+                    <option> Selecione sua cidade </option>
+                </select>
+            </div>
+            : <div className="input-container">
+                <select className="select-text third-select" onChange={selecionarCidade} value={cidade}>
+                    Selecione
+                    {cidades.map(({ nome }, idx) => <option key={ idx } value={ nome }>{ nome }</option>)}    
+                </select>
+                </div>
+                }
     </>
+    // }
 }

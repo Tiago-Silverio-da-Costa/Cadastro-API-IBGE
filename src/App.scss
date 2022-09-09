@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('http://fonts.cdnfonts.com/css/new-super-mario-font-u');
+
+
+$dark: #35414a;
+$semilight: #86919a;
+$blue: #5aafee;
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #4E86B4;
+}
+
+.colors-title {
+  font-family: 'New Super Mario Font U', sans-serif; 
+  letter-spacing: 1px;
+  font-size: 5rem;
+  text-shadow: 10px 0 #000000, -10px 0 #000000, 0 10px #000000, 0 -10px #000000,
+  7px 7px #000000, -7px -7px #000000, 7px -7px #000000, -7px 7px #000000;
+
+}
+
+.input-block{
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  padding: 10px 0 10px 15px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #23272A;
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  transition: all .3s ease-in-out;
+  margin: 5px;
+}
+
+.select-text {
+  background-color: #23272A;
+  width: 20em;
+  text-align: center;
+  justify-content: center;
+  margin: 1em auto;
+  font-family: pfs-bold;
+  color: $semilight;
+  text-transform: uppercase;
+  position: relative;
+  float: center;
+  
+
+  
+}
+
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.input-container {
+  font-family: "Open Sans", sans; 
+}
+
+.btn-send {
+  background: #23272A;
+  margin-top: 10px;
+  border: 1px solid #23272A;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'New Super Mario Font U', sans-serif;  
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.btn-send:hover,
+.btn-send:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.btn-send:active {
+  opacity: .5;
+}
