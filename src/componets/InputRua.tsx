@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormEnderecoContext } from "../pages/FormEnderecoContext";
 
 
 
 export default function () {
     const { uf, setUf, cidade, setCidade, rua, setRua} = React.useContext(FormEnderecoContext)
+    const [ruas, setRuas] = useState([])
 
-    const BuscarRuas = async (ev: React.KeyboardEvent<HTMLInputElement>) => {
-        const requestRua = await fetch(`https://viacep.com.br/ws/${uf}/${cidade}/${ev.currentTarget.value}/json/`)
-        const responseRua = await requestRua.json()
-        setRua(responseRua[1])
+    async function BuscarRuas() {
+        if (!rua) return
+        const getRua = await fetch(`https://viacep.com.br/ws/${uf}/${cidade}/${rua}/json/`)
+        const setRua = await getRua.json()
+        // setRua(setRua[1])
+        setRua(rua)
     }
-    const selecioneRua = (ev: React.ChangeEvent<HTMLInputElement>) => {
+
+    useEffect(() => {
+        BuscarRuas()
+    }, [rua])
+    const getRua = (ev: React.ChangeEvent<HTMLInputElement>) => {
         setRua(ev.currentTarget.value)
     }
 
     return <>
-        <div className="input-container">
-            <input className="input-block" value={rua} onChange={(ev) => selecioneRua(ev)} onKeyUp={BuscarRuas} type="text" placeholder="Insira a rua"/>
-        </div>
+        {!rua 
+            ?<div className="input-container">
+                <select className="select-text quad-select" value={rua} onChange={() => getRua}>
+                    <option> Selecione sua rua</option>
+                </select>
+            </div>
+            :<div className="input-container">
+                <select className="select-text quad-select" value={rua} onChange={() => getRua}>
+                    {ruas.map(({ nome }, idx) => <option key={ idx } value={ nome }> { nome } </option>)}
+                </select>
+            </div>
+        }
     </>
 }

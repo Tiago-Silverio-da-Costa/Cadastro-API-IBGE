@@ -1,5 +1,4 @@
 import React from "react"
-import select from "../sounds/selecionar.wav"
 import { useEffect, useState } from "react"
 import { FormEnderecoContext } from "../pages/FormEnderecoContext"
 
@@ -10,8 +9,8 @@ export default function() {
     
     async function BuscarCidade(){
         if (!uf) return
-        const requestCidades = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
-        const cidades = await requestCidades.json()
+        const getCidades = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+        const setcidades = await getCidades.json()
         setCidades(cidades)
     }
     useEffect(() => {
@@ -21,27 +20,18 @@ export default function() {
     const selecionarCidade = (ev: React.ChangeEvent<HTMLSelectElement>) => {
         setCidade(ev.currentTarget.value)
     }
-    // const Sound = () => {
-    //     const audio = new Audio(select)
-    
     return <>
         {!uf 
             ? <div className="input-container">
-                <select className="select-text second-select"
-                // onClick={ () => {
-                //     audio.play()
-                // }}
-                >
+                <select className="select-text second-select">
                     <option> Selecione sua cidade </option>
                 </select>
             </div>
             : <div className="input-container">
                 <select className="select-text third-select" onChange={selecionarCidade} value={cidade}>
-                    Selecione
                     {cidades.map(({ nome }, idx) => <option key={ idx } value={ nome }>{ nome }</option>)}    
                 </select>
                 </div>
                 }
     </>
-    // }
 }

@@ -1,11 +1,18 @@
-import FormEnderecoContextProvider from "./FormEnderecoContext";
+import ReactDOM from "react-dom";
+
+import FormEnderecoContext from "./FormEnderecoContext";
 import InputCEP from "../componets/InputCEP";
 import InputCidades from "../componets/InputCidades";
 import InputEstados from "../componets/InputEstados";
-import brazil from "../pages/brazil.png";
 import InputRua from "../componets/InputRua";
-import send from "../sounds/enviar.wav"
-import ReactDOM from "react-dom";
+
+
+
+import send from "../sounds/coin.mp3"
+import title from "../sounds/enviar.mp3"
+import img from "../sounds/digitar.wav"
+
+import brazil from "../pages/brazil.png";
 
 export default function () {
     const handleSubmit = (event: { preventDefault: () => void; }) => {
@@ -14,12 +21,18 @@ export default function () {
     }
     
     const Sound = () => {
-        const audio = new Audio(send)
+        const audioSend = new Audio(send)
+        const audioTitle = new Audio(title)
+        const audioImg = new Audio(img)
     
 
     return (
-        <FormEnderecoContextProvider>
-        <p>
+        <FormEnderecoContext>
+        <p
+        onClick={
+            () => {
+                audioTitle.play()
+                }}>
     <span className="colors-title" style={{ color: '#0B9BD7' }}>C</span>
     <span className="colors-title" style={{ color: '#FACF07' }}>a</span>
     <span className="colors-title" style={{ color: '#E52927' }}>d</span>
@@ -29,24 +42,29 @@ export default function () {
     <span className="colors-title" style={{ color: '#45AF4A' }}>r</span>
     <span className="colors-title" style={{ color: '#FACF07' }}>o</span>
     </p> 
-        <img src={brazil} width="800" height="500"></img>
+        <img src={brazil} width="800" height="500"
+        onClick={
+            () => {
+                audioImg.play()
+                }}></img>
             <form className="container" onSubmit={handleSubmit}>
                 <InputEstados/>
                 <InputCidades/>
-                <InputCEP/>
                 <InputRua/>
+                <InputCEP/>
+                
 
                 
     
                 <button className="btn-send" onClick={
                     () => {
-                        audio.play()
+                        audioSend.play()
                         }}
                         >
                 Enviar
                 </button>
             </form>
-        </FormEnderecoContextProvider>
+        </FormEnderecoContext>
     )
 }
 

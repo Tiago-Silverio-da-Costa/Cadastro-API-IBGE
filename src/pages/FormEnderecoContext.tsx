@@ -1,7 +1,5 @@
 import React, {useState } from "react";
 
-
-
 interface Endereco {
     uf: string,
     setUf: React.Dispatch<React.SetStateAction<string>>,
@@ -26,8 +24,5 @@ export default function FormAdressContextProvider(props: React.PropsWithChildren
         {{uf, setUf, cidade, setCidade, CEP, setCEP, rua, setRua}}>
         {props.children}
         </FormEnderecoContext.Provider>
-
-            
-        
     </>
 }
