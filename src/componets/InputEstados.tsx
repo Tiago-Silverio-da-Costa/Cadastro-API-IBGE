@@ -16,7 +16,7 @@ export default function () {
     return <>
         <div className="input-container">
             <select className="select-text first_select" onChange={selecionarEstado} value={uf}>
-                {listado ? "" : <option>Selecione seu estado</option>}
+                {listado ? "" : <option>Selecione o estado</option>}
                 {estados.map(({ sigla, nome}, idx) => <option id={sigla} key={idx} value={sigla}>{sigla} : {nome}</option>)}
             </select>
         </div>

@@ -13,20 +13,20 @@ export default function () {
     }
 
     const BuscarEndereco = async (cep: string) => {
-        const requestCode = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        const responseCode = await requestCode.json()
-        if (responseCode.error) {
-            setError(responseCode.error)
+        const requestCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        const responseCep = await requestCep.json()
+        if (responseCep.error) {
+            setError(responseCep.error)
             return
         }
 
         setError(false)
-        setUf(responseCode.uf)
-        setCidade(responseCode.localidade)
-        setRua(responseCode.logradouro)
+        setUf(responseCep.uf)
+        setCidade(responseCep.localidade)
+        setRua(responseCep.logradouro)
     }
     
-    const codeMask = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    const CepMask = (ev: React.KeyboardEvent<HTMLInputElement>) => {
         ev.currentTarget.value = ev.currentTarget.value.replace(/\D/g, "")
         ev.currentTarget.value = ev.currentTarget.value.replace(/^(\d{5})(\d{3})/, "$1-$2")
     }
@@ -34,11 +34,10 @@ export default function () {
     return <>
 
         <div className="input-container">
-            <label htmlFor="input-code"></label>
             <input className="input-block" maxLength={8} type="text" placeholder="Insira o CEP" onKeyUp = 
             {
                 (ev) => {
-                codeMask(ev)
+                CepMask(ev)
                 atualizaCEP(ev)
             } }/> 
         </div>

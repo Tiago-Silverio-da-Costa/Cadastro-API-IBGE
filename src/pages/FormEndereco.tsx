@@ -53,7 +53,9 @@ export default function () {
                 <InputRua/>
                 <InputCEP/>
                 
-
+                <div className="input-container">
+                    <input className="input-block" placeholder="Complemento"/>
+                </div>  
                 
     
                 <button className="btn-send" onClick={
@@ -61,7 +63,7 @@ export default function () {
                         audioSend.play()
                         }}
                         >
-                Enviar
+                    Enviar
                 </button>
             </form>
         </FormEnderecoContext>
