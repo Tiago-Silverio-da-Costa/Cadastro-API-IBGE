@@ -33,7 +33,7 @@ export default function () {
 
     return <>
 
-        <div className="input-container">
+        <div className="input-contr">
             <input className="input-block" maxLength={8} type="text" placeholder="Insira o CEP" onKeyUp = 
             {
                 (ev) => {

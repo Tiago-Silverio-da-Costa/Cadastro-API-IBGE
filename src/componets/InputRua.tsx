@@ -19,7 +19,7 @@ export default function () {
     }
 
     return <>
-            <div className="input-container">
+            <div className="input-cont">
             <input className="input-block" value={rua} onChange={(ev) => getRua(ev)} onKeyUp={buscarRuas} type="text" placeholder="Insira a rua"/>
         
         </div>      

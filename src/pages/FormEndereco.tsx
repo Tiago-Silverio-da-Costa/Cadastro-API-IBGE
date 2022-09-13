@@ -6,8 +6,6 @@ import InputCidades from "../componets/InputCidades";
 import InputEstados from "../componets/InputEstados";
 import InputRua from "../componets/InputRua";
 
-
-
 import send from "../sounds/coin.mp3"
 import title from "../sounds/enviar.mp3"
 import img from "../sounds/digitar.wav"
@@ -48,12 +46,16 @@ export default function () {
                 audioImg.play()
                 }}></img>
             <form className="container" onSubmit={handleSubmit}>
-                <InputEstados/>
-                <InputCidades/>
+                <div className="headline">
+                    <div className="ladoAlado">
+                        <InputEstados/>
+                        <InputCidades/>
+                    </div>
+                </div>
                 <InputRua/>
                 <InputCEP/>
                 
-                <div className="input-container">
+                <div className="input-cont">
                     <input className="input-block" placeholder="Complemento"/>
                 </div>  
                 
